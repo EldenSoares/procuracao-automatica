@@ -11,21 +11,24 @@ const endereco = document.getElementById("endereco")
 const objetoEspecifico = document.getElementById("objetoEspecifico")
 const poderes = document.getElementById("powerList").querySelectorAll("input[type=checkbox]")
 let poderesProcuracao = document.getElementById("poderesProcuracao")
-poderesProcuracao.innerText = "conferindo-lhe ainda, os poderes especiais para "
-
 
 // dados populados
-// nome.value = "heráclito thiago de castro santos"
-// nacionalidade.value = "brasileiro"
-// estadoCivil.value = "casado"
-// profissao.value = "programador"
-// rg.value = "123456789"
-// cpf.value = "12345678900"
-// enderecoEletronico.value = "ht.adv@outlook.com"
-// endereco.value = "Rua das flores"
-// objetoEspecifico.value = "Ação de indenização por danos patrimoniais e morais em face de Banco do Brasil"
+nome.value = "heráclito thiago de castro santos"
+nacionalidade.value = "brasileiro"
+estadoCivil.value = "casado"
+profissao.value = "programador"
+rg.value = "123456789"
+cpf.value = "12345678900"
+enderecoEletronico.value = "ht.adv@outlook.com"
+endereco.value = "Rua das flores"
+objetoEspecifico.value = "Ação de indenização por danos patrimoniais e morais em face de Banco do Brasil"
 
+// adiciona dados do cliente e poderes
 generate.addEventListener('click', () => {
+
+    //verifica se todos os poderes estão marcados
+    poderesProcuracao.innerText = toogleBox.checked == true ? "" : "conferindo-lhe ainda, os poderes especiais para "
+
     document.getElementById("cliente").innerText = `${nome.value.toUpperCase()}, ${nacionalidade.value}, ${estadoCivil.value}, ${profissao.value}, portador da cédula de identidade nº ${rg.value}, inscrito devidamente no CPF nº ${cpf.value}, endereço eletrônico ${enderecoEletronico.value}, residente e domiciliado à ${endereco.value}.`
 
     document.getElementById("objeto").innerText = `${objetoEspecifico.value}`
@@ -50,4 +53,6 @@ const option = {
     month: ('long' || 'short' || 'numeric'),
     day: 'numeric'
 }
+
+// data atual
 hoje.innerText = `${new Date().toLocaleDateString('pt-br', option)}.`
