@@ -101,6 +101,7 @@ toogleBtn.addEventListener('click', () => {
     toggleClass(toogleBtn)
 });
 
+// marca os checkbox
 ulList.addEventListener('change', e => {
     if (e.target.checked == false) {
         document.querySelector(`label[for="${e.target.value}"]`).style.textDecoration = 'line-through';

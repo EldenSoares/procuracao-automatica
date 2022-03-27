@@ -1,15 +1,23 @@
 @import url('https://fonts.googleapis.com/css2?family=Bitter&family=Montserrat:wght@400&display=swap');
 
-    .geral {
-        font-family: 'Montserrat', sans-serif;
-        text-align: justify;
-        font-size: 11pt;
-    }
+.geral {
+    font-family: 'Montserrat', sans-serif;
+    text-align: justify;
+    font-size: 11pt;
+}
 
-    .h5 {
-        font-family: 'Bitter', serif;
-    }
+.h5 {
+    font-family: 'Bitter', serif;
+}
 
-    .table tbody tr td {
-        padding-left: 0;
+.table tbody tr td {
+    padding-left: 0;
+}
+
+@media print {
+    footer{
+        position: absolute;
+        bottom: 0;
+        width: 100%;
     }
+}
