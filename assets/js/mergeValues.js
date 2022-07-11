@@ -13,15 +13,15 @@ const poderes = document.getElementById("powerList").querySelectorAll("input[typ
 let poderesProcuracao = document.getElementById("poderesProcuracao")
 
 // dados populados
-nome.value = "heráclito thiago de castro santos"
-nacionalidade.value = "brasileiro"
-estadoCivil.value = "casado"
-profissao.value = "programador"
-rg.value = "123456789 SSP/RJ, expedida em 21/03/2006"
-cpf.value = "12345678900"
-enderecoEletronico.value = "ht.adv@outlook.com"
-endereco.value = "Rua das flores, nº 123 - Centro - São Paulo - SP, CEP: 01234-567"
-objetoEspecifico.value = "Ação de indenização por danos patrimoniais e morais em face de Banco do Brasil"
+// nome.value = "heráclito thiago de castro santos"
+// nacionalidade.value = "brasileiro"
+// estadoCivil.value = "casado"
+// profissao.value = "programador"
+// rg.value = "123456789 SSP/RJ, expedida em 21/03/2006"
+// cpf.value = "12345678900"
+// enderecoEletronico.value = "ht.adv@outlook.com"
+// endereco.value = "Rua das flores, nº 123 - Centro - São Paulo - SP, CEP: 01234-567"
+objetoEspecifico.value = "Ação de Alvará"
 
 // adiciona dados do cliente e poderes
 generate.addEventListener('click', () => {
