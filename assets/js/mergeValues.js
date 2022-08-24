@@ -36,6 +36,13 @@ generate.addEventListener('click', () => {
 
 })
 
+const urlData = new URLSearchParams(location.search)
+const objetoEspecificoContent = urlData.get('objeto')
+if(objetoEspecificoContent != "" || objetoEspecificoContent != null){
+    objetoEspecifico.value = objetoEspecificoContent
+    objetoEspecifico.setAttribute('disabled', 'disabled')
+}
+
 const hoje = document.getElementById("hoje")
 const option = {
     year: 'numeric',
