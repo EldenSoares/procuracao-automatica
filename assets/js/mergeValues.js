@@ -1,5 +1,6 @@
 const data = document.querySelectorAll("input[type=text]")
 const generate = document.querySelector(`[data-action="data-procuracao"]`)
+const deleteAllData = document.querySelector('button[type=reset]')
 const nome = document.getElementById("nome")
 const nacionalidade = document.getElementById("nacionalidade")
 const estadoCivil = document.getElementById("estadoCivil")
@@ -12,8 +13,60 @@ const objetoEspecifico = document.getElementById("objetoEspecifico")
 const poderes = document.getElementById("powerList").querySelectorAll("input[type=checkbox]")
 let poderesProcuracao = document.getElementById("poderesProcuracao")
 
+const urlData = new URLSearchParams(location.search)
+const objetoEspecificoContent = urlData.get('objeto')
+if (objetoEspecificoContent != "" || objetoEspecificoContent != null) {
+    objetoEspecifico.value = objetoEspecificoContent
+}
+
+if (localStorage.getItem('procuracaoAdJudicia') != null) {
+    const dataUsuario = JSON.parse(localStorage.getItem('procuracaoAdJudicia'))
+
+    dataUsuario.forEach((el) => {
+        if (Object.keys(el) == 'objetoEspecifico') {
+            const textArea = document.querySelector('textarea')
+            textArea.innerText = Object.values(el)
+        }
+        document.querySelector(`[id=${Object.keys(el)}]`).value = Object.values(el)
+    })
+}
+
+
+const hoje = document.getElementById("hoje")
+const option = {
+    year: 'numeric',
+    month: ('long' || 'short' || 'numeric'),
+    day: 'numeric'
+}
+
+// data atual
+hoje.innerText = `${new Date().toLocaleDateString('pt-br', option)}.`
+
+
+function deleteDataLocalStorage() {
+    localStorage.clear('procuracaoAdJudicia')
+}
+
+deleteAllData.addEventListener('click', () => deleteDataLocalStorage())
+
 // adiciona dados do cliente e poderes
 generate.addEventListener('click', () => {
+
+    const arrayDeDados = Array.from(document.querySelectorAll('input[type=text]'))
+    arrayDeDados.push(document.querySelector('textarea'))
+
+    //converte os dados em array de objetos
+    const objData = arrayDeDados.map(({ value, id }) => {
+        return { [id]: value }
+    })
+
+    //remove os itens para fazer o update dos dados
+    if (localStorage.getItem('procuracaoAdJudicia') != null) {
+        deleteDataLocalStorage()
+    }
+
+    //salva todos os dados do formulário no navegador do usuário
+    localStorage.setItem('procuracaoAdJudicia', JSON.stringify(objData))
 
     //verifica se todos os poderes estão marcados
     poderesProcuracao.innerText = toogleBox.checked == true ? "" : "conferindo-lhe ainda, os poderes especiais para "
@@ -35,19 +88,3 @@ generate.addEventListener('click', () => {
     })
 
 })
-
-const urlData = new URLSearchParams(location.search)
-const objetoEspecificoContent = urlData.get('objeto')
-if(objetoEspecificoContent != "" || objetoEspecificoContent != null){
-    objetoEspecifico.value = objetoEspecificoContent
-}
-
-const hoje = document.getElementById("hoje")
-const option = {
-    year: 'numeric',
-    month: ('long' || 'short' || 'numeric'),
-    day: 'numeric'
-}
-
-// data atual
-hoje.innerText = `${new Date().toLocaleDateString('pt-br', option)}.`
