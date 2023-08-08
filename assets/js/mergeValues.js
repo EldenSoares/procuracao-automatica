@@ -111,6 +111,7 @@ generate.addEventListener('click', () => {
 
     fetch('https://script.google.com/macros/s/AKfycbzdSM8Xlpwknt_d4bYxBEZgRUXc2Ol-79AmxEAZUw9zbU1AOcSMjiPhoiGC0z1eyXc/exec', {
             method: 'POST',
+            mode: 'no-cors',
             headers: {
                 'Content-Type': 'application/json'
             },
