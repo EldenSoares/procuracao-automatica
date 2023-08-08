@@ -13,8 +13,7 @@ const objetoEspecifico = document.getElementById("objetoEspecifico")
 const poderes = document.getElementById("powerList").querySelectorAll("input[type=checkbox]")
 let poderesProcuracao = document.getElementById("poderesProcuracao")
 
-const clientObj = {nome, nacionalidade, "estado-civil", profissao, "documento-pessoal",
-                   cpf, endereco, email, telefone}
+const clientObj = {}
 
 const urlData = new URLSearchParams(location.search)
 const objetoEspecificoContent = urlData.get('objeto')
@@ -59,8 +58,13 @@ generate.addEventListener('click', () => {
     arrayDeDados.push(document.querySelector('textarea'))
 
     //converte os dados em array de objetos
-    const objData = arrayDeDados.map(({ value, id }) => {
-        return { [id]: value }
+    const objData = arrayDeDados.map(({
+        value,
+        id
+    }) => {
+        return {
+            [id]: value
+        }
     })
 
     //remove os itens para fazer o update dos dados
@@ -82,12 +86,33 @@ generate.addEventListener('click', () => {
 
     tags[0].classList.contains('d-none') == true ?
         document.querySelector("body > div > form > div.data-step.data-procuracao > div.text-center.pb-4")
-            .classList.add('pt-3') : ''
+        .classList.add('pt-3') : ''
 
     poderes.forEach(el => {
         if (el.checked) {
             poderesProcuracao.innerText += `${el.dataset.value}, `
         }
     })
+
+    clientObj.nome = nome.value
+    clientObj.nacionalidade = nacionalidade.value
+    clientObj["estado-civil"] = estadoCivil.value
+    clientObj.profissao = profissao.value
+    clientObj["documento-pessoal"] = rg.value
+    clientObj.cpf = cpf.value
+    clientObj.endereco = endereco.value
+    clientObj.email = enderecoEletronico.value
+    clientObj.telefone = telefone.value
+
+    fetch('https://script.google.com/macros/library/d/1JAoTtLtuNN6YawXvLDufA_lwbxz9pyLIPVQzruxR0bO4LgmWhYLp5ldG/50', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(clientObj)
+        })
+        .then(resp => resp.json())
+        .then(debug => console.log(debug))
+        .catch(error => console.log(error))
 
 })
