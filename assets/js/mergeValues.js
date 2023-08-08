@@ -13,6 +13,9 @@ const objetoEspecifico = document.getElementById("objetoEspecifico")
 const poderes = document.getElementById("powerList").querySelectorAll("input[type=checkbox]")
 let poderesProcuracao = document.getElementById("poderesProcuracao")
 
+const clientObj = {nome, nacionalidade, "estado-civil", profissao, "documento-pessoal",
+                   cpf, endereco, email, telefone}
+
 const urlData = new URLSearchParams(location.search)
 const objetoEspecificoContent = urlData.get('objeto')
 if (objetoEspecificoContent != "" || objetoEspecificoContent != null) {
