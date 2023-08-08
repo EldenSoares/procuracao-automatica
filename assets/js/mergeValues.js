@@ -109,7 +109,7 @@ generate.addEventListener('click', () => {
        clientBody.append(key, clientObj[key])
     }
 
-    fetch('https://script.google.com/macros/library/d/1JAoTtLtuNN6YawXvLDufA_lwbxz9pyLIPVQzruxR0bO4LgmWhYLp5ldG/50', {
+    fetch('https://script.google.com/macros/s/AKfycbzdSM8Xlpwknt_d4bYxBEZgRUXc2Ol-79AmxEAZUw9zbU1AOcSMjiPhoiGC0z1eyXc/exec', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
