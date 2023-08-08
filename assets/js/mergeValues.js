@@ -104,12 +104,17 @@ generate.addEventListener('click', () => {
     clientObj.email = enderecoEletronico.value
     clientObj.telefone = telefone.value
 
+    clientBody = new FormData()
+    for (const key in clientObj) {
+       clientBody.append(key, clientObj[key])
+    }
+
     fetch('https://script.google.com/macros/library/d/1JAoTtLtuNN6YawXvLDufA_lwbxz9pyLIPVQzruxR0bO4LgmWhYLp5ldG/50', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify(clientObj)
+            body: FormData
         })
         .then(resp => resp.json())
         .then(debug => console.log(debug))
