@@ -21,3 +21,10 @@
         width: 100%;
     }
 }
+
+@media (max-width: 768px) { /* Define regras para telas de largura igual ou inferior a 768px */
+    img {
+        width: 100%;
+        height: auto; /* Mantém a proporção da imagem */
+    }
+}
